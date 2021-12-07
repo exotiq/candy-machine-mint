@@ -10,25 +10,140 @@
       content="Web site created using create-react-app"
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="%PUBLIC_URL%/custom.css" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
+    
   </head>
   <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">NFT Webseite</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            
+            <li class="nav-item">
+              <a class="nav-link" href="#project">Projekt</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#team">Das Team</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#mint">Mint</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container" id="project">
+       <h1 class="text-center"><span class="titel">Das NFT Projekt von Yapeal</span></h1>
+      <div class="row">
+        <div class="col-sm">
+          <p>
+            Minte und halte die Yapeal Mitarbeiter sodass du von coolen
+            Überraschungen profitieren kannst.
+          </p>
+        </div>
+        <div class="col-sm">
+          <img
+            class="w-100"
+            src="%PUBLIC_URL%/media/info_home.png"
+            alt="Viel Erfolg beim Mint!"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="contianer" id="team">
+      <h1 class="text-center"> <span class="titel">Das Team</span></h1>
+      <div class="row">
+        <div class="col-sm">
+          <div class="card mx-auto team" style="width: 18rem">
+            <img
+              src="%PUBLIC_URL%/media/non.png"
+              class="card-img-top "
+              alt="Non"
+            />
+            <div class="card-body ">
+              <h5 class="card-title">Managerin</h5>
+              <p class="card-text">
+                Sie ist das Brain des Projekts und trinkt gerne einen ... oder
+                zwei (zuviel).
+              </p>
+              <a href="https://twitter.com/stlzoo" class="btn btn-primary"
+                >Twitter</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="col-sm">
+          <div class="card mx-auto team" style="width: 18rem">
+            <img
+              src="%PUBLIC_URL%/media/fabio.png"
+              class="card-img-top"
+              alt="Non"
+            />
+            <div class="card-body ">
+              <h5 class="card-title">Assistent</h5>
+              <p class="card-text">
+                Fabio kann eigentlich nichts aber ist trotzdem voll dabei. Er kauft auch manchmal NFTs.
+              </p>
+              <a href="https://twitter.com/stlzoo" class="btn btn-primary"
+                >Twitter</a
+              >
+            </div>
+        </div>
+      </div>
+        
+        <div class="col-sm">
+          <div class="card mx-auto team" style="width: 18rem">
+            <img
+              src="%PUBLIC_URL%/media/cat.jpg"
+              class="card-img-top"
+              alt="Non"
+            />
+            <div class="card-body ">
+              <h5 class="card-title">CEO</h5>
+              <p class="card-text">
+                Mit sieben Leben kann die Katze noch lange mit NFTs spielen. Sie ist sehr launisch und deshalb wohl die Chefin.
+              </p>
+              <a href="https://twitter.com/stlzoo" class="btn btn-primary"
+                >Twitter</a
+              >
+            </div>
+        </div>
+      </div>
+    </div>
     <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div class="container" id="mint">
+      <h1 class="text-center"> <span class="titel">Mint des Yapeal Teams</span></h1>
+      <p class="text-center">Klicke auf den "mint" Knopf, um ein Team-Mitglied von Yapeal in deiner Wallet zu haben.</p>
     <div id="root"></div>
+  </div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

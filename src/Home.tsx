@@ -167,21 +167,22 @@ const Home = (props: HomeProps) => {
 
   return (
     <main>
+      <div className="mint-container" >
       {wallet && (
         <p>Wallet {shortenAddress(wallet.publicKey.toBase58() || "")}</p>
       )}
 
-      {wallet && <p>Balance: {(balance || 0).toLocaleString()} SOL</p>}
+      {wallet && <p>Deine Wallet Balance: {(balance || 0).toLocaleString()} SOL</p>}
 
-      {wallet && <p>Total Available: {itemsAvailable}</p>}
+      {wallet && <p>Total verfügbare NFTs: {itemsAvailable}</p>}
 
-      {wallet && <p>Redeemed: {itemsRedeemed}</p>}
+      {wallet && <p>Bezogene NFTs: {itemsRedeemed}</p>}
 
-      {wallet && <p>Remaining: {itemsRemaining}</p>}
-
+      {wallet && <p>Verfügbare NFTs: {itemsRemaining}</p>}
+      
       <MintContainer>
         {!wallet ? (
-          <ConnectButton>Connect Wallet</ConnectButton>
+          <ConnectButton>Wallet verbinden</ConnectButton>
         ) : (
           <MintButton
             disabled={isSoldOut || isMinting || !isActive}
@@ -220,6 +221,7 @@ const Home = (props: HomeProps) => {
           {alertState.message}
         </Alert>
       </Snackbar>
+      </div>
     </main>
   );
 };
