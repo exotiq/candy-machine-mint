@@ -3,10 +3,13 @@
 The Candy-Machine-Mint project is designed to let users fork, customize, and deploy their own candy machine mint app to a custom domain, ultra fast.
 
 A candy machine is an on-chain Solana program (or smart contract) for managing fair mint. Fair mints:
+
 * Start and finish at the same time for everyone.
 * Won't accept your funds if they're out of NFTs to sell.
 
-The Candy-Machine-Mint project is meant to be as simple and usable as possible, accessible to everyone from long-time crypto devs to junior React devs with a vague interest in NFTs. Our goal is to empower users to create their own front ends to display, sell, and manage their NFTs as simply as possible by just updating a few styled components and following a well-documented process for setup and shipping.
+The Candy-Machine-Mint project is meant to be as simple and usable as possible, accessible to everyone from long-time crypto devs to junior React devs with a vague interest in NFTs. Our goal is to
+empower users to create their own front ends to display, sell, and manage their NFTs as simply as possible by just updating a few styled components and following a well-documented process for setup
+and shipping.
 
 ## Getting Set Up
 
@@ -17,16 +20,18 @@ The Candy-Machine-Mint project is meant to be as simple and usable as possible, 
 * Follow the instructions [here](https://docs.solana.com/cli/install-solana-cli-tools) to install the Solana Command Line Toolkit.
 
 * Follow the instructions [here](https://hackmd.io/@levicook/HJcDneEWF) to install the Metaplex Command Line Utility.
-  * Installing the Command Line Package is currently an advanced task that will be simplified eventually.
+    * Installing the Command Line Package is currently an advanced task that will be simplified eventually.
 
 ### Installation
 
 1. Fork the project, then clone down. Example:
+
 ```
 git clone git@github.com:exiled-apes/candy-machine-mint.git
 ```
 
 2. Build the project. Example:
+
 ```
 cd candy-machine-mint
 yarn install
@@ -112,9 +117,11 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands
+except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool
+wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
 ## Learn More
 
