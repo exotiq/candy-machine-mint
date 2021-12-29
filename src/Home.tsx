@@ -168,17 +168,50 @@ const Home = (props: HomeProps) => {
     return (
         <main>
             <div className="mint-container">
-                {wallet && (
+
+                {/*
+                { wallet && (
                     <p>Wallet {shortenAddress(wallet.publicKey.toBase58() || "")}</p>
                 )}
-
                 {wallet && <p>Deine Wallet Balance: {(balance || 0).toLocaleString()} SOL</p>}
-
                 {wallet && <p>Total verfügbare NFTs: {itemsAvailable}</p>}
-
                 {wallet && <p>Bezogene NFTs: {itemsRedeemed}</p>}
-
                 {wallet && <p>Verfügbare NFTs: {itemsRemaining}</p>}
+                */
+                }
+
+                {wallet && (
+                    <div className="flex flex-col">
+                        <table className="w-100">
+                            <tbody className="divide-y divide-gray-200">
+                                <tr>
+                                    <td className="p-2">
+                                        <div className="text-right">Wallet</div>
+                                    </td>
+                                    <td className="p-2">
+                                        <div>{shortenAddress(wallet.publicKey.toBase58() || "")}</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className="p-2">
+                                        <div className="text-right">Balance</div>
+                                    </td>
+                                    <td className="p-2">
+                                        <div>{(balance || 0).toLocaleString()} SOL</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className="p-2">
+                                        <div className="text-right">Tokens</div>
+                                    </td>
+                                    <td className="p-2">
+                                        <div>{itemsRemaining}/{itemsAvailable}</div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                )}
 
                 <MintContainer>
                     {!wallet ? (
@@ -187,11 +220,10 @@ const Home = (props: HomeProps) => {
                         <MintButton
                             disabled={isSoldOut || isMinting || !isActive}
                             onClick={onMint}
-                            variant="contained"
-                        >
-                            {isSoldOut ? (
-                                "SOLD OUT"
-                            ) : isActive ? (
+                            variant="contained">
+                            {isSoldOut ?
+                                ("SOLD OUT")
+                                : isActive ? (
                                 isMinting ? (
                                     <CircularProgress/>
                                 ) : (

@@ -1,11 +1,8 @@
-import "./App.css";
-import { useMemo } from "react";
-
-import Home from "./Home";
-
+import { createTheme, ThemeProvider } from "@material-ui/core";
 import * as anchor from "@project-serum/anchor";
-import { clusterApiUrl } from "@solana/web3.js";
 import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
+import { ConnectionProvider, WalletProvider } from "@solana/wallet-adapter-react";
+import { WalletDialogProvider } from "@solana/wallet-adapter-material-ui";
 import {
     getPhantomWallet,
     getSlopeWallet,
@@ -13,10 +10,11 @@ import {
     getSolletWallet,
     getSolletExtensionWallet
 } from "@solana/wallet-adapter-wallets";
+import { clusterApiUrl } from "@solana/web3.js";
+import { useMemo } from "react";
 
-import { ConnectionProvider, WalletProvider } from "@solana/wallet-adapter-react";
-import { WalletDialogProvider } from "@solana/wallet-adapter-material-ui";
-import { createTheme, ThemeProvider } from "@material-ui/core";
+import Home from "./Home";
+import "./App.css";
 
 const treasury = new anchor.web3.PublicKey(process.env.REACT_APP_TREASURY_ADDRESS!);
 const config = new anchor.web3.PublicKey(process.env.REACT_APP_CANDY_MACHINE_CONFIG!);
@@ -55,7 +53,6 @@ const theme = createTheme({
 
 const App = () => {
     const endpoint = useMemo(() => clusterApiUrl(network), []);
-
     const wallets = useMemo(
         () => [
             getPhantomWallet(),
