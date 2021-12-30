@@ -128,7 +128,7 @@ export default function Team() {
                         <CardMedia className={classes.media} image="media/fabio.png" title="Arindam Bajpayee"/>
                         <CardContent>
                             <Typography variant="body2" color="textSecondary" component="p">
-                                Arindam also doesn't have a clue. He buys useless NFTs all the time.
+                                Arindam also doesn't have a clue as to what he is doing. He keeps on buying useless NFTs all the time.
                             </Typography>
                         </CardContent>
                         <CardActions disableSpacing>

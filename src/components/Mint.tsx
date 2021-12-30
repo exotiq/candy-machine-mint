@@ -1,10 +1,10 @@
-import { Box, Button, CircularProgress, createStyles, Grid, makeStyles, Paper, Snackbar, Theme } from "@material-ui/core";
+import { Box, Button, CircularProgress, createStyles, Grid, makeStyles, Paper, Snackbar, Theme, Typography } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
 import * as anchor from "@project-serum/anchor";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { WalletDialogButton } from "@solana/wallet-adapter-material-ui";
 import { useAnchorWallet } from "@solana/wallet-adapter-react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Countdown from "react-countdown";
 import styled from "styled-components";
 import {
@@ -160,22 +160,28 @@ const Mint = (props: HomeProps) => {
     const useStyles = makeStyles((theme: Theme) =>
         createStyles({
             root: {
-                flexGrow: 1,
+                flexGrow: 1
             },
             paper: {
                 color: "#0EA5E9", // theme.palette.primary
                 backgroundColor: "transparent",
                 padding: theme.spacing(2),
-                textAlign: 'center',
-            },
-        }),
+                textAlign: "center"
+            }
+        })
     );
 
     const classes = useStyles();
 
     return (
-        <div className="mint-container p-x-5 p-y-10">
-            {/*
+        <Box mt={2} p={4}>
+            <Box mt={2} p={4}>
+                <Typography variant="h4" align="center" color="secondary">Mint</Typography>
+                <Typography variant="subtitle2" align="center" color="textPrimary">Click on the button below to connect your wallet in order to mint.</Typography>
+            </Box>
+
+            <div className="mint-container p-x-5 p-y-10">
+                {/*
                 { wallet && (
                     <p>Wallet {shortenAddress(wallet.publicKey.toBase58() || "")}</p>
                 )}
@@ -184,77 +190,90 @@ const Mint = (props: HomeProps) => {
                 {wallet && <p>Bezogene NFTs: {itemsRedeemed}</p>}
                 {wallet && <p>Verfügbare NFTs: {itemsRemaining}</p>}
                 */
-            }
-            <div className="w-100 text-center">
-                {!wallet ? (
-                    <WalletDialogButton variant="text" color="default" fullWidth size="large">Connect your wallet</WalletDialogButton>
-                ) : (
-                    <div className="flex flex-col">
-                        <Grid container>
-                            <Grid item xs={6}>
-                                <Paper className={classes.paper} elevation={0}>
-                                    <Box sx={{ display: "flex", flexDirection: "column" }}>
-                                        <Box component="span" sx={{ color: "#FFFFFF", fontSize: 16, mt: 1 }}>Your wallet</Box>
-                                        <Box component="span" sx={{ color: "primary.main", fontSize: 22 }}>{shortenAddress(wallet.publicKey.toBase58() || "")}</Box>
-                                    </Box>
-                                </Paper>
-                            </Grid>
-                            <Grid item xs={6}>
-                                <Paper className={classes.paper} elevation={0}>
-                                    <Box sx={{ display: "flex", flexDirection: "column" }}>
-                                        <Box component="span" sx={{ color: "#FFFFFF", fontSize: 16, mt: 1 }}>Your balance</Box>
-                                        <Box component="span" sx={{ color: "primary.main", fontSize: 22 }}>{(balance || 0).toLocaleString()} SOL</Box>
-                                    </Box>
-                                </Paper>
-                            </Grid>
-                            <Grid item xs={6}>
-                                <Paper className={classes.paper} elevation={0}>
-                                    <Box sx={{ display: "flex", flexDirection: "column" }}>
-                                        <Box component="span" sx={{ color: "#FFFFFF", fontSize: 16, mt: 1 }}>Tokens remaining</Box>
-                                        <Box component="span" sx={{ color: "primary.main", fontSize: 22 }}>{itemsRemaining}/{itemsAvailable}</Box>
-                                    </Box>
-                                </Paper>
-                            </Grid>
-                            <Grid item xs={6}>
-                                <Paper className={classes.paper} elevation={0}>
-                                    <Box sx={{ display: "flex", flexDirection: "column" }}>
-                                        <Button
-                                            variant="text" color="default" fullWidth size="large"
-                                            disabled={isSoldOut || isMinting || !isActive}
-                                            onClick={onMint}>
-                                            {isSoldOut ?
-                                                ("SOLD OUT") : isActive ?
-                                                    (isMinting ? (<CircularProgress/>) : ("MINT"))
-                                                    : (
-                                                        <Countdown
-                                                            date={startDate}
-                                                            onMount={({ completed }) => completed && setIsActive(true)}
-                                                            onComplete={() => setIsActive(true)}
-                                                            renderer={renderCounter}
-                                                        />
-                                                    )}
-                                        </Button>
-                                    </Box>
-                                </Paper>
-                            </Grid>
-                        </Grid>
-                    </div>
-                )}
-            </div>
+                }
+                <div className="w-100 text-center">
+                    {
+                        !wallet ?
+                            (<WalletDialogButton variant="text" color="default" fullWidth size="large">Connect your wallet</WalletDialogButton>)
+                            : (
+                                <div className="flex flex-col">
+                                    <Grid container>
+                                        <Grid item xs={6}>
+                                            <Paper className={classes.paper} elevation={0}>
+                                                <Box sx={{ display: "flex", flexDirection: "column" }}>
+                                                    <Box component="span" sx={{ color: "#FFFFFF", fontSize: 16, mt: 1 }}>Your wallet</Box>
+                                                    <Box component="span" sx={{ color: "primary.main", fontSize: 22 }}>{shortenAddress(wallet.publicKey.toBase58() || "")}</Box>
+                                                </Box>
+                                            </Paper>
+                                        </Grid>
+                                        <Grid item xs={6}>
+                                            <Paper className={classes.paper} elevation={0}>
+                                                <Box sx={{ display: "flex", flexDirection: "column" }}>
+                                                    <Box component="span" sx={{ color: "#FFFFFF", fontSize: 16, mt: 1 }}>Your balance</Box>
+                                                    <Box component="span" sx={{ color: "primary.main", fontSize: 22 }}>{(balance || 0).toLocaleString()} SOL</Box>
+                                                </Box>
+                                            </Paper>
+                                        </Grid>
+                                        <Grid item xs={6}>
+                                            <Paper className={classes.paper} elevation={0}>
+                                                <Box sx={{ display: "flex", flexDirection: "column" }}>
+                                                    <Box component="span" sx={{ color: "#FFFFFF", fontSize: 16, mt: 1 }}>Tokens remaining</Box>
+                                                    <Box component="span" sx={{ color: "primary.main", fontSize: 22 }}>{itemsRemaining}/{itemsAvailable}</Box>
+                                                </Box>
+                                            </Paper>
+                                        </Grid>
+                                        <Grid item xs={6}>
+                                            <Paper className={classes.paper} elevation={0}>
+                                                <Box sx={{ display: "flex", flexDirection: "column" }}>
+                                                    <Box component="span" sx={{ color: "#FFFFFF", fontSize: 16, mt: 1 }}>Mint price</Box>
+                                                    <Box component="span" sx={{ color: "primary.main", fontSize: 22 }}>0.11 SOL</Box>
+                                                </Box>
+                                            </Paper>
+                                        </Grid>
+                                        <Grid item xs={12}>
+                                            <Paper className={classes.paper} elevation={0}>
+                                                <Box sx={{ display: "flex", flexDirection: "column" }}>
+                                                    <Button
+                                                        variant="text" color="default" fullWidth size="large"
+                                                        disabled={isSoldOut || isMinting || !isActive}
+                                                        onClick={onMint}>
+                                                        {
+                                                            isSoldOut ?
+                                                                ("SOLD OUT") : isActive ?
+                                                                    (
+                                                                        isMinting ?
+                                                                            (<CircularProgress/>)
+                                                                            : (<Typography variant="h5" align="center" color="secondary">Mint</Typography>)
+                                                                    )
+                                                                    : (
+                                                                        <Countdown
+                                                                            date={startDate}
+                                                                            onMount={({ completed }) => completed && setIsActive(true)}
+                                                                            onComplete={() => setIsActive(true)}
+                                                                            renderer={renderCounter}
+                                                                        />
+                                                                    )
+                                                        }
+                                                    </Button>
+                                                </Box>
+                                            </Paper>
+                                        </Grid>
+                                    </Grid>
+                                </div>
+                            )
+                    }
+                </div>
 
-            <Snackbar
-                open={alertState.open}
-                autoHideDuration={6000}
-                onClose={() => setAlertState({ ...alertState, open: false })}
-            >
-                <Alert
-                    onClose={() => setAlertState({ ...alertState, open: false })}
-                    severity={alertState.severity}
-                >
-                    {alertState.message}
-                </Alert>
-            </Snackbar>
-        </div>
+                <Snackbar
+                    open={alertState.open}
+                    autoHideDuration={6000}
+                    onClose={() => setAlertState({ ...alertState, open: false })}>
+                    <Alert onClose={() => setAlertState({ ...alertState, open: false })} severity={alertState.severity}>
+                        {alertState.message}
+                    </Alert>
+                </Snackbar>
+            </div>
+        </Box>
     );
 };
 
