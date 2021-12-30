@@ -13,8 +13,10 @@ import {
 import { clusterApiUrl } from "@solana/web3.js";
 import { useMemo } from "react";
 
-import Mint from "./components/Mint";
 import "./App.css";
+import { Default } from "./themes/Default"
+import Mint from "./components/Mint";
+import Team from "./components/Team";
 
 const treasury = new anchor.web3.PublicKey(process.env.REACT_APP_TREASURY_ADDRESS!);
 const config = new anchor.web3.PublicKey(process.env.REACT_APP_CANDY_MACHINE_CONFIG!);
@@ -26,11 +28,8 @@ const startDateSeed = parseInt(process.env.REACT_APP_CANDY_START_DATE!, 10);
 
 const txTimeout = 30000; // milliseconds (confirm this works for your project)
 
-const theme = createTheme({
-    palette: {
-        type: "dark"
-    },
-});
+// https://bareynol.github.io/mui-theme-creator/
+const theme = createTheme(Default);
 
 const App = () => {
     const endpoint = useMemo(() => clusterApiUrl(network), []);
@@ -61,6 +60,8 @@ const App = () => {
                     </WalletDialogProvider>
                 </WalletProvider>
             </ConnectionProvider>
+
+            <Team/>
         </ThemeProvider>
     );
 };

@@ -163,7 +163,7 @@ const Mint = (props: HomeProps) => {
                 flexGrow: 1,
             },
             paper: {
-                color: "#0EA5E9",
+                color: "#0EA5E9", // theme.palette.primary
                 backgroundColor: "transparent",
                 padding: theme.spacing(2),
                 textAlign: 'center',
@@ -190,33 +190,33 @@ const Mint = (props: HomeProps) => {
                     <WalletDialogButton variant="text" color="default" fullWidth size="large">Connect your wallet</WalletDialogButton>
                 ) : (
                     <div className="flex flex-col">
-                        <Grid container spacing={1}>
+                        <Grid container>
                             <Grid item xs={6}>
-                                <Paper className={classes.paper}  elevation={0}>
+                                <Paper className={classes.paper} elevation={0}>
                                     <Box sx={{ display: "flex", flexDirection: "column" }}>
-                                        <Box component="span" sx={{ color: "#FFFFFF", fontSize: 16, mt: 1 }}>Wallet</Box>
+                                        <Box component="span" sx={{ color: "#FFFFFF", fontSize: 16, mt: 1 }}>Your wallet</Box>
                                         <Box component="span" sx={{ color: "primary.main", fontSize: 22 }}>{shortenAddress(wallet.publicKey.toBase58() || "")}</Box>
                                     </Box>
                                 </Paper>
                             </Grid>
                             <Grid item xs={6}>
-                                <Paper className={classes.paper}  elevation={0}>
+                                <Paper className={classes.paper} elevation={0}>
                                     <Box sx={{ display: "flex", flexDirection: "column" }}>
-                                        <Box component="span" sx={{ color: "#FFFFFF", fontSize: 16, mt: 1 }}>Balance</Box>
+                                        <Box component="span" sx={{ color: "#FFFFFF", fontSize: 16, mt: 1 }}>Your balance</Box>
                                         <Box component="span" sx={{ color: "primary.main", fontSize: 22 }}>{(balance || 0).toLocaleString()} SOL</Box>
                                     </Box>
                                 </Paper>
                             </Grid>
                             <Grid item xs={6}>
-                                <Paper className={classes.paper}  elevation={0}>
+                                <Paper className={classes.paper} elevation={0}>
                                     <Box sx={{ display: "flex", flexDirection: "column" }}>
-                                        <Box component="span" sx={{ color: "#FFFFFF", fontSize: 16, mt: 1 }}>Tokens</Box>
+                                        <Box component="span" sx={{ color: "#FFFFFF", fontSize: 16, mt: 1 }}>Tokens remaining</Box>
                                         <Box component="span" sx={{ color: "primary.main", fontSize: 22 }}>{itemsRemaining}/{itemsAvailable}</Box>
                                     </Box>
                                 </Paper>
                             </Grid>
                             <Grid item xs={6}>
-                                <Paper className={classes.paper}>
+                                <Paper className={classes.paper} elevation={0}>
                                     <Box sx={{ display: "flex", flexDirection: "column" }}>
                                         <Button
                                             variant="text" color="default" fullWidth size="large"
