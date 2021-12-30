@@ -1,30 +1,22 @@
-import { useEffect, useState } from "react";
-import styled from "styled-components";
-import Countdown from "react-countdown";
-import { Button, CircularProgress, Snackbar } from "@material-ui/core";
+import { Box, Button, CircularProgress, createStyles, Grid, makeStyles, Paper, Snackbar, Theme } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
-
 import * as anchor from "@project-serum/anchor";
-
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
-
-import { useAnchorWallet } from "@solana/wallet-adapter-react";
 import { WalletDialogButton } from "@solana/wallet-adapter-material-ui";
-
+import { useAnchorWallet } from "@solana/wallet-adapter-react";
+import { useEffect, useState } from "react";
+import Countdown from "react-countdown";
+import styled from "styled-components";
 import {
     CandyMachine,
     awaitTransactionSignatureConfirmation,
     getCandyMachineState,
     mintOneToken,
     shortenAddress
-} from "./candy-machine";
-
-const ConnectButton = styled(WalletDialogButton)``;
+} from "../candy-machine";
+import "./Mint.scss";
 
 const CounterText = styled.span``; // add your styles here
-
-const MintContainer = styled.div``; // add your styles here
-
 const MintButton = styled(Button)``; // add your styles here
 
 export interface HomeProps {
@@ -36,7 +28,7 @@ export interface HomeProps {
     txTimeout: number;
 }
 
-const Home = (props: HomeProps) => {
+const Mint = (props: HomeProps) => {
     const [ balance, setBalance ] = useState<number>();
     const [ isActive, setIsActive ] = useState(false); // true when countdown completes
     const [ isSoldOut, setIsSoldOut ] = useState(false); // true when items remaining is zero
@@ -165,11 +157,25 @@ const Home = (props: HomeProps) => {
         props.connection
     ]);
 
-    return (
-        <main>
-            <div className="mint-container">
+    const useStyles = makeStyles((theme: Theme) =>
+        createStyles({
+            root: {
+                flexGrow: 1,
+            },
+            paper: {
+                color: "#0EA5E9",
+                backgroundColor: "transparent",
+                padding: theme.spacing(2),
+                textAlign: 'center',
+            },
+        }),
+    );
 
-                {/*
+    const classes = useStyles();
+
+    return (
+        <div className="mint-container p-x-5 p-y-10">
+            {/*
                 { wallet && (
                     <p>Wallet {shortenAddress(wallet.publicKey.toBase58() || "")}</p>
                 )}
@@ -178,83 +184,77 @@ const Home = (props: HomeProps) => {
                 {wallet && <p>Bezogene NFTs: {itemsRedeemed}</p>}
                 {wallet && <p>Verfügbare NFTs: {itemsRemaining}</p>}
                 */
-                }
-
-                {wallet && (
+            }
+            <div className="w-100 text-center">
+                {!wallet ? (
+                    <WalletDialogButton variant="text" color="default" fullWidth size="large">Connect your wallet</WalletDialogButton>
+                ) : (
                     <div className="flex flex-col">
-                        <table className="w-100">
-                            <tbody className="divide-y divide-gray-200">
-                                <tr>
-                                    <td className="p-2">
-                                        <div className="text-right">Wallet</div>
-                                    </td>
-                                    <td className="p-2">
-                                        <div>{shortenAddress(wallet.publicKey.toBase58() || "")}</div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className="p-2">
-                                        <div className="text-right">Balance</div>
-                                    </td>
-                                    <td className="p-2">
-                                        <div>{(balance || 0).toLocaleString()} SOL</div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className="p-2">
-                                        <div className="text-right">Tokens</div>
-                                    </td>
-                                    <td className="p-2">
-                                        <div>{itemsRemaining}/{itemsAvailable}</div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <Grid container spacing={1}>
+                            <Grid item xs={6}>
+                                <Paper className={classes.paper}  elevation={0}>
+                                    <Box sx={{ display: "flex", flexDirection: "column" }}>
+                                        <Box component="span" sx={{ color: "#FFFFFF", fontSize: 16, mt: 1 }}>Wallet</Box>
+                                        <Box component="span" sx={{ color: "primary.main", fontSize: 22 }}>{shortenAddress(wallet.publicKey.toBase58() || "")}</Box>
+                                    </Box>
+                                </Paper>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <Paper className={classes.paper}  elevation={0}>
+                                    <Box sx={{ display: "flex", flexDirection: "column" }}>
+                                        <Box component="span" sx={{ color: "#FFFFFF", fontSize: 16, mt: 1 }}>Balance</Box>
+                                        <Box component="span" sx={{ color: "primary.main", fontSize: 22 }}>{(balance || 0).toLocaleString()} SOL</Box>
+                                    </Box>
+                                </Paper>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <Paper className={classes.paper}  elevation={0}>
+                                    <Box sx={{ display: "flex", flexDirection: "column" }}>
+                                        <Box component="span" sx={{ color: "#FFFFFF", fontSize: 16, mt: 1 }}>Tokens</Box>
+                                        <Box component="span" sx={{ color: "primary.main", fontSize: 22 }}>{itemsRemaining}/{itemsAvailable}</Box>
+                                    </Box>
+                                </Paper>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <Paper className={classes.paper}>
+                                    <Box sx={{ display: "flex", flexDirection: "column" }}>
+                                        <Button
+                                            variant="text" color="default" fullWidth size="large"
+                                            disabled={isSoldOut || isMinting || !isActive}
+                                            onClick={onMint}>
+                                            {isSoldOut ?
+                                                ("SOLD OUT") : isActive ?
+                                                    (isMinting ? (<CircularProgress/>) : ("MINT"))
+                                                    : (
+                                                        <Countdown
+                                                            date={startDate}
+                                                            onMount={({ completed }) => completed && setIsActive(true)}
+                                                            onComplete={() => setIsActive(true)}
+                                                            renderer={renderCounter}
+                                                        />
+                                                    )}
+                                        </Button>
+                                    </Box>
+                                </Paper>
+                            </Grid>
+                        </Grid>
                     </div>
                 )}
-
-                <MintContainer>
-                    {!wallet ? (
-                        <ConnectButton>Wallet verbinden</ConnectButton>
-                    ) : (
-                        <MintButton
-                            disabled={isSoldOut || isMinting || !isActive}
-                            onClick={onMint}
-                            variant="contained">
-                            {isSoldOut ?
-                                ("SOLD OUT")
-                                : isActive ? (
-                                isMinting ? (
-                                    <CircularProgress/>
-                                ) : (
-                                    "MINT"
-                                )
-                            ) : (
-                                <Countdown
-                                    date={startDate}
-                                    onMount={({ completed }) => completed && setIsActive(true)}
-                                    onComplete={() => setIsActive(true)}
-                                    renderer={renderCounter}
-                                />
-                            )}
-                        </MintButton>
-                    )}
-                </MintContainer>
-
-                <Snackbar
-                    open={alertState.open}
-                    autoHideDuration={6000}
-                    onClose={() => setAlertState({ ...alertState, open: false })}
-                >
-                    <Alert
-                        onClose={() => setAlertState({ ...alertState, open: false })}
-                        severity={alertState.severity}
-                    >
-                        {alertState.message}
-                    </Alert>
-                </Snackbar>
             </div>
-        </main>
+
+            <Snackbar
+                open={alertState.open}
+                autoHideDuration={6000}
+                onClose={() => setAlertState({ ...alertState, open: false })}
+            >
+                <Alert
+                    onClose={() => setAlertState({ ...alertState, open: false })}
+                    severity={alertState.severity}
+                >
+                    {alertState.message}
+                </Alert>
+            </Snackbar>
+        </div>
     );
 };
 
@@ -272,4 +272,4 @@ const renderCounter = ({ days, hours, minutes, seconds, completed }: any) => {
     );
 };
 
-export default Home;
+export default Mint;

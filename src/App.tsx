@@ -13,7 +13,7 @@ import {
 import { clusterApiUrl } from "@solana/web3.js";
 import { useMemo } from "react";
 
-import Home from "./Home";
+import Mint from "./components/Mint";
 import "./App.css";
 
 const treasury = new anchor.web3.PublicKey(process.env.REACT_APP_TREASURY_ADDRESS!);
@@ -30,25 +30,6 @@ const theme = createTheme({
     palette: {
         type: "dark"
     },
-    overrides: {
-        MuiButtonBase: {
-            root: {
-                justifyContent: "flex-start"
-            }
-        },
-        MuiButton: {
-            root: {
-                textTransform: undefined,
-                padding: "12px 16px"
-            },
-            startIcon: {
-                marginRight: 8
-            },
-            endIcon: {
-                marginLeft: 8
-            }
-        }
-    }
 });
 
 const App = () => {
@@ -69,7 +50,7 @@ const App = () => {
             <ConnectionProvider endpoint={endpoint}>
                 <WalletProvider wallets={wallets} autoConnect={true}>
                     <WalletDialogProvider>
-                        <Home
+                        <Mint
                             candyMachineId={candyMachineId}
                             config={config}
                             connection={connection}

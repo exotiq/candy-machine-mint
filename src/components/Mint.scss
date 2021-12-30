@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.mint-container {
+    background-color: #220021;
+    border: #0EA5E9 solid 10px;
+    border-radius: 20px;
+    font-size: 1.3em;
+    margin: auto;
+    width: 500px;
+
+    table div.text-left {
+        color: #0EA5E9;
+    }
+
+    table div.text-right {
+        font-size: 16px;
+    }
+}
