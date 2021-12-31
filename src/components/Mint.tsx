@@ -177,10 +177,10 @@ const Mint = (props: HomeProps) => {
         <Box mt={2} p={4}>
             <Box mt={2} p={4}>
                 <Typography variant="h4" align="center" color="secondary">Mint</Typography>
-                <Typography variant="subtitle2" align="center" color="textPrimary">Click on the button below to connect your wallet in order to mint.</Typography>
+                <Typography variant="subtitle2" align="center" color="textPrimary">Click on the button below to connect your wallet and mint.</Typography>
             </Box>
 
-            <div className="mint-container p-x-5 p-y-10">
+            <Box mt={2} p={4} className="mint-container" style={{ margin: "auto", width: "500px" }}>
                 {/*
                 { wallet && (
                     <p>Wallet {shortenAddress(wallet.publicKey.toBase58() || "")}</p>
@@ -234,7 +234,7 @@ const Mint = (props: HomeProps) => {
                                             <Paper className={classes.paper} elevation={0}>
                                                 <Box sx={{ display: "flex", flexDirection: "column" }}>
                                                     <Button
-                                                        variant="text" color="default" fullWidth size="large"
+                                                        variant="contained" color="secondary" fullWidth size="large"
                                                         disabled={isSoldOut || isMinting || !isActive}
                                                         onClick={onMint}>
                                                         {
@@ -243,7 +243,7 @@ const Mint = (props: HomeProps) => {
                                                                     (
                                                                         isMinting ?
                                                                             (<CircularProgress/>)
-                                                                            : (<Typography variant="h5" align="center" color="secondary">Mint</Typography>)
+                                                                            : (<Typography variant="h5" align="center" color="primary">Mint</Typography>)
                                                                     )
                                                                     : (
                                                                         <Countdown
@@ -272,7 +272,7 @@ const Mint = (props: HomeProps) => {
                         {alertState.message}
                     </Alert>
                 </Snackbar>
-            </div>
+            </Box>
         </Box>
     );
 };
