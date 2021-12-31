@@ -163,9 +163,10 @@ const Mint = (props: HomeProps) => {
                 flexGrow: 1
             },
             paper: {
+                backgroundColor: "rgba(0,0,0,0.2)",
+                borderRadius: "10px",
                 color: "#0EA5E9", // theme.palette.primary
-                backgroundColor: "transparent",
-                padding: theme.spacing(2),
+                padding: theme.spacing(1),
                 textAlign: "center"
             }
         })
@@ -197,7 +198,7 @@ const Mint = (props: HomeProps) => {
                             (<WalletDialogButton variant="text" color="default" fullWidth size="large">Connect your wallet</WalletDialogButton>)
                             : (
                                 <div className="flex flex-col">
-                                    <Grid container>
+                                    <Grid container spacing={2}>
                                         <Grid item xs={6}>
                                             <Paper className={classes.paper} elevation={0}>
                                                 <Box sx={{ display: "flex", flexDirection: "column" }}>
