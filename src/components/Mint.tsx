@@ -162,6 +162,9 @@ const Mint = (props: HomeProps) => {
             root: {
                 flexGrow: 1
             },
+            bold: {
+                fontWeight: "bold"
+            },
             paper: {
                 backgroundColor: "rgba(0,0,0,0.2)",
                 borderRadius: "10px",
@@ -235,7 +238,7 @@ const Mint = (props: HomeProps) => {
                                             <Paper className={classes.paper} elevation={0}>
                                                 <Box sx={{ display: "flex", flexDirection: "column" }}>
                                                     <Button
-                                                        variant="contained" color="secondary" fullWidth size="large"
+                                                        variant="outlined" color="secondary" fullWidth size="large"
                                                         disabled={isSoldOut || isMinting || !isActive}
                                                         onClick={onMint}>
                                                         {
@@ -244,7 +247,7 @@ const Mint = (props: HomeProps) => {
                                                                     (
                                                                         isMinting ?
                                                                             (<CircularProgress/>)
-                                                                            : (<Typography variant="h5" align="center" color="primary">Mint</Typography>)
+                                                                            : (<Typography variant="h5" align="center" color="secondary" className={classes.bold}>Mint</Typography>)
                                                                     )
                                                                     : (
                                                                         <Countdown
