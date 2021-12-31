@@ -17,7 +17,6 @@ import {
 import "./Mint.scss";
 
 const CounterText = styled.span``; // add your styles here
-const MintButton = styled(Button)``; // add your styles here
 
 export interface HomeProps {
     candyMachineId: anchor.web3.PublicKey;
@@ -35,7 +34,6 @@ const Mint = (props: HomeProps) => {
     const [ isMinting, setIsMinting ] = useState(false); // true when user got to press MINT
 
     const [ itemsAvailable, setItemsAvailable ] = useState(0);
-    const [ itemsRedeemed, setItemsRedeemed ] = useState(0);
     const [ itemsRemaining, setItemsRemaining ] = useState(0);
 
     const [ alertState, setAlertState ] = useState<AlertState>({
@@ -58,7 +56,6 @@ const Mint = (props: HomeProps) => {
                 goLiveDate,
                 itemsAvailable,
                 itemsRemaining,
-                itemsRedeemed
             } = await getCandyMachineState(
                 wallet as anchor.Wallet,
                 props.candyMachineId,
@@ -67,7 +64,6 @@ const Mint = (props: HomeProps) => {
 
             setItemsAvailable(itemsAvailable);
             setItemsRemaining(itemsRemaining);
-            setItemsRedeemed(itemsRedeemed);
 
             setIsSoldOut(itemsRemaining === 0);
             setStartDate(goLiveDate);

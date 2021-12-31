@@ -1,7 +1,6 @@
 import React from "react";
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
-import { Avatar, Box, Card, CardHeader, CardMedia, CardContent, CardActions, Grid, IconButton, Typography, CardActionArea, useMediaQuery } from "@material-ui/core";
-import { purple } from "@material-ui/core/colors";
+import { Avatar, Box, Card, CardHeader, CardMedia, CardContent, CardActions, Grid, IconButton, Typography } from "@material-ui/core";
 
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import TwitterIcon from "@material-ui/icons/Twitter";
@@ -24,7 +23,6 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function Team() {
     const classes = useStyles();
-    const [ expanded, setExpanded ] = React.useState(false);
 
     return (
         <Box mt={2} p={4}>
