@@ -4,7 +4,7 @@ import * as anchor from "@project-serum/anchor";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { WalletDialogButton } from "@solana/wallet-adapter-material-ui";
 import { useAnchorWallet } from "@solana/wallet-adapter-react";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Countdown from "react-countdown";
 import styled from "styled-components";
 import {
@@ -14,11 +14,10 @@ import {
     mintOneToken,
     shortenAddress
 } from "../candy-machine";
-import "./Mint.scss";
 
 const CounterText = styled.span``; // add your styles here
 
-export interface HomeProps {
+export interface MintProps {
     candyMachineId: anchor.web3.PublicKey;
     config: anchor.web3.PublicKey;
     connection: anchor.web3.Connection;
@@ -27,7 +26,7 @@ export interface HomeProps {
     txTimeout: number;
 }
 
-const Mint = (props: HomeProps) => {
+const Mint = (props: MintProps) => {
     const [ balance, setBalance ] = useState<number>();
     const [ isActive, setIsActive ] = useState(false); // true when countdown completes
     const [ isSoldOut, setIsSoldOut ] = useState(false); // true when items remaining is zero
@@ -161,10 +160,17 @@ const Mint = (props: HomeProps) => {
             bold: {
                 fontWeight: "bold"
             },
+            container: {
+                backgroundColor: "#220021",
+                border: `${theme.palette.secondary.main} solid 2px`,
+                borderRadius: "20px",
+                margin: "auto",
+                width: "500px",
+            },
             paper: {
                 backgroundColor: "rgba(0,0,0,0.2)",
                 borderRadius: "10px",
-                color: "#0EA5E9", // theme.palette.primary
+                color: theme.palette.secondary.main,
                 padding: theme.spacing(1),
                 textAlign: "center"
             }
@@ -180,7 +186,7 @@ const Mint = (props: HomeProps) => {
                 <Typography variant="subtitle2" align="center" color="textPrimary">Click on the button below to connect your wallet and mint.</Typography>
             </Box>
 
-            <Box mt={2} p={4} className="mint-container" style={{ margin: "auto", width: "500px" }}>
+            <Box mt={2} p={4} className={classes.container}>
                 {/*
                 { wallet && (
                     <p>Wallet {shortenAddress(wallet.publicKey.toBase58() || "")}</p>

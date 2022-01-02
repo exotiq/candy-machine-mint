@@ -1,4 +1,3 @@
-import React from "react";
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 import { Avatar, Box, Card, CardHeader, CardMedia, CardContent, CardActions, Grid, IconButton, Typography } from "@material-ui/core";
 
@@ -11,7 +10,7 @@ const useStyles = makeStyles((theme: Theme) =>
             maxWidth: 345
         },
         avatar: {
-            backgroundColor: "#220021",
+            backgroundColor: theme.palette.primary.main,
             color: "#FFFFFF"
         },
         media: {
@@ -21,7 +20,7 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-export default function Team() {
+const Team = () => {
     const classes = useStyles();
 
     return (
@@ -54,7 +53,7 @@ export default function Team() {
                     </Grid>
                 */}
                 <Grid item xs={12} sm={6} md={3}>
-                    <Card className={classes.root}>
+                    <Card className={classes.root} raised>
                         <CardHeader
                             avatar={
                                 <Avatar aria-label="team" className={classes.avatar}>FS</Avatar>
@@ -82,7 +81,7 @@ export default function Team() {
                 </Grid>
 
                 <Grid item xs={12} sm={6} md={3}>
-                    <Card className={classes.root}>
+                    <Card className={classes.root} raised>
                         <CardHeader
                             avatar={
                                 <Avatar aria-label="team" className={classes.avatar}>FG</Avatar>
@@ -110,7 +109,7 @@ export default function Team() {
                 </Grid>
 
                 <Grid item xs={12} sm={6} md={3}>
-                    <Card className={classes.root}>
+                    <Card className={classes.root} raised>
                         <CardHeader
                             avatar={
                                 <Avatar aria-label="team" className={classes.avatar}>AB</Avatar>
@@ -140,3 +139,5 @@ export default function Team() {
         </Box>
     );
 }
+
+export default Team;

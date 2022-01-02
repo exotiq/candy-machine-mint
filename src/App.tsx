@@ -13,10 +13,10 @@ import {
 import { clusterApiUrl } from "@solana/web3.js";
 import { useMemo } from "react";
 
-import "./App.css";
 import { Default } from "./themes/Default"
 import Mint from "./components/Mint";
 import Team from "./components/Team";
+import Home from "./components/Home";
 
 const treasury = new anchor.web3.PublicKey(process.env.REACT_APP_TREASURY_ADDRESS!);
 const config = new anchor.web3.PublicKey(process.env.REACT_APP_CANDY_MACHINE_CONFIG!);
@@ -46,6 +46,7 @@ const App = () => {
 
     return (
         <ThemeProvider theme={theme}>
+            <Home/>
             <ConnectionProvider endpoint={endpoint}>
                 <WalletProvider wallets={wallets} autoConnect={true}>
                     <WalletDialogProvider>
@@ -60,7 +61,6 @@ const App = () => {
                     </WalletDialogProvider>
                 </WalletProvider>
             </ConnectionProvider>
-
             <Team/>
         </ThemeProvider>
     );
